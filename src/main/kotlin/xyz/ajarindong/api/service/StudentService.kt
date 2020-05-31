@@ -1,8 +1,8 @@
 package xyz.ajarindong.api.service
 
-import xyz.ajarindong.studentservice.dto.StudentDto
-import xyz.ajarindong.studentservice.dto.StudentProfileUpdateDto
-import xyz.ajarindong.studentservice.dto.StudentRegistrationDto
+import xyz.ajarindong.api.dto.StudentDto
+import xyz.ajarindong.api.dto.form.StudentProfileUpdateDto
+import xyz.ajarindong.api.dto.form.StudentRegistrationDto
 
 interface StudentService {
     fun getStudents(): List<StudentDto>

@@ -1,4 +1,4 @@
-package xyz.ajarindong.studentservice.dto
+package xyz.ajarindong.api.dto
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import org.springframework.hateoas.RepresentationModel

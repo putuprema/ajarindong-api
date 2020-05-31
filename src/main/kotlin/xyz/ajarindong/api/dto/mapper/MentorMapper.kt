@@ -1,7 +1,7 @@
 package xyz.ajarindong.api.dto.mapper
 
+import xyz.ajarindong.api.dto.MentorDto
 import xyz.ajarindong.api.model.Mentor
-import xyz.ajarindong.studentservice.dto.MentorDto
 
 object MentorMapper {
     fun toMentorDto(o: Mentor): MentorDto {

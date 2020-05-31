@@ -7,14 +7,14 @@ import org.springframework.stereotype.Component
 import xyz.ajarindong.api.constant.AppConstant
 import xyz.ajarindong.api.constant.ErrCode
 import xyz.ajarindong.api.controller.v1.StudentController
+import xyz.ajarindong.api.dto.StudentDto
+import xyz.ajarindong.api.dto.form.StudentProfileUpdateDto
+import xyz.ajarindong.api.dto.form.StudentRegistrationDto
 import xyz.ajarindong.api.dto.mapper.StudentMapper
 import xyz.ajarindong.api.exception.EntityAlreadyExistException
 import xyz.ajarindong.api.exception.EntityNotFoundException
 import xyz.ajarindong.api.model.Student
 import xyz.ajarindong.api.repository.StudentRepository
-import xyz.ajarindong.studentservice.dto.StudentDto
-import xyz.ajarindong.studentservice.dto.StudentProfileUpdateDto
-import xyz.ajarindong.studentservice.dto.StudentRegistrationDto
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*

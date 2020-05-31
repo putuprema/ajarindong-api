@@ -4,11 +4,11 @@ import io.swagger.v3.oas.annotations.Operation
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import xyz.ajarindong.api.dto.MentorDto
 import xyz.ajarindong.api.dto.ResponseEnvelope
+import xyz.ajarindong.api.dto.form.MentorProfileUpdateDto
+import xyz.ajarindong.api.dto.form.MentorRegistrationDto
 import xyz.ajarindong.api.service.MentorService
-import xyz.ajarindong.studentservice.dto.MentorDto
-import xyz.ajarindong.studentservice.dto.MentorProfileUpdateDto
-import xyz.ajarindong.studentservice.dto.MentorRegistrationDto
 import javax.transaction.Transactional
 import javax.validation.Valid
 

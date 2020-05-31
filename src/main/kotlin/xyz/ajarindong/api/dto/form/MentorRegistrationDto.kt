@@ -1,4 +1,4 @@
-package xyz.ajarindong.studentservice.dto
+package xyz.ajarindong.api.dto.form
 
 import io.swagger.v3.oas.annotations.media.Schema
 import org.hibernate.validator.constraints.Length

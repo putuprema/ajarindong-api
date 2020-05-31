@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import xyz.ajarindong.api.constant.ErrCode
 import xyz.ajarindong.api.dto.ResponseEnvelope
-import xyz.ajarindong.studentservice.dto.StudentDto
+import xyz.ajarindong.api.dto.StudentDto
 
 @RestController
 @RequestMapping("/v1/student")

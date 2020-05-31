@@ -7,10 +7,10 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import xyz.ajarindong.api.dto.ResponseEnvelope
+import xyz.ajarindong.api.dto.StudentDto
+import xyz.ajarindong.api.dto.form.StudentProfileUpdateDto
+import xyz.ajarindong.api.dto.form.StudentRegistrationDto
 import xyz.ajarindong.api.service.StudentService
-import xyz.ajarindong.studentservice.dto.StudentDto
-import xyz.ajarindong.studentservice.dto.StudentProfileUpdateDto
-import xyz.ajarindong.studentservice.dto.StudentRegistrationDto
 import javax.transaction.Transactional
 import javax.validation.Valid
 
