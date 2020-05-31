@@ -68,9 +68,9 @@ class ControllerExceptionHandler : ResponseEntityExceptionHandler() {
 
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(AjarinDongException::class)
-    fun handleCashitException(ex: AjarinDongException, handlerMethod: HandlerMethod): ResponseEntity<ResponseEnvelope<Any>> {
+    fun handleAjarinDongException(ex: AjarinDongException, handlerMethod: HandlerMethod): ResponseEntity<ResponseEnvelope<Any>> {
         val log = LoggerFactory.getLogger(handlerMethod.method.declaringClass)
-        log.warn("Exception caught: {}", ex.message, ex)
+        log.warn("Exception caught: {}", ex.message)
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ResponseEnvelope(ex.errCode.code, ex.message!!))
     }
 
