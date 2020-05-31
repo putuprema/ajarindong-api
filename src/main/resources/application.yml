@@ -1,0 +1,33 @@
+server:
+  port: 8080
+  forward-headers-strategy: framework
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 3MB
+  datasource:
+    url: jdbc:mysql://localhost:3306/ajarindong
+    username: root
+    password: XXXXXX
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  mvc:
+    log-resolved-exception: false
+    throw-exception-if-no-handler-found: true
+  application:
+    name: ajarindong-api
+
+springdoc:
+  packagesToScan: xyz.ajarindong.api.controller
+  paths-to-match: /**
+  api-docs:
+    path: /docs/api
+  swagger-ui:
+    path: /docs/swagger-ui.html
+  default-produces-media-type: application/json
