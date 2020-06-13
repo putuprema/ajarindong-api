@@ -31,3 +31,6 @@ springdoc:
   swagger-ui:
     path: /docs/swagger-ui.html
   default-produces-media-type: application/json
+
+jwt:
+  secret: XXXXXX

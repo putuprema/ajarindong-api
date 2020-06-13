@@ -5,6 +5,7 @@ import java.util.*
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Id
+import javax.persistence.ManyToMany
 
 @Entity
 data class Mentor(
@@ -21,5 +22,10 @@ data class Mentor(
 ) : AuditableEntity() {
     @Id
     var id: String = UUID.randomUUID().toString()
+
+    @Column(nullable = false)
     var rating: Double = 0.0
+
+    @ManyToMany(mappedBy = "mentors")
+    var courses: List<Course>? = null
 }

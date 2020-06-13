@@ -5,6 +5,7 @@ import java.util.*
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Id
+import javax.persistence.OneToMany
 
 @Entity
 data class Student(
@@ -19,6 +20,14 @@ data class Student(
 ) : AuditableEntity() {
     @Id
     var id: String = UUID.randomUUID().toString()
+    var profilePicture: String? = null
+
+    @Column(nullable = false)
     var level: Int = 0
+
+    @Column(nullable = false)
     var experience: Long = 0
+
+    @OneToMany(mappedBy = "student")
+    var courses: List<CourseEnrollment>? = null
 }
