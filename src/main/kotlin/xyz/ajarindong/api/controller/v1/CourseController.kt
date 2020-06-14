@@ -1,6 +1,7 @@
 package xyz.ajarindong.api.controller.v1
 
 import io.swagger.v3.oas.annotations.Operation
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import xyz.ajarindong.api.dto.CourseCategoryDto
 import xyz.ajarindong.api.dto.CourseDto
@@ -33,6 +34,10 @@ class CourseController(
     fun getCourseCategoryDetail(@PathVariable id: String): ResponseEnvelope<CourseCategoryDto> =
             ResponseEnvelope<CourseCategoryDto>()
                     .data(courseCategoryService.getCategoryDetail(id))
+
+    @Operation(summary = "Get course category icon")
+    @GetMapping("/category/{id}/icon")
+    fun getCourseCategoryIcon(@PathVariable id: String): ResponseEntity<ByteArray> = courseCategoryService.getIcon(id)
 
     @Operation(summary = "Get courses")
     @GetMapping

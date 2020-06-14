@@ -1,12 +1,13 @@
 package xyz.ajarindong.api.service
 
+import org.apache.commons.io.FileUtils
+import org.apache.commons.io.FilenameUtils
 import org.slf4j.LoggerFactory
-import org.springframework.hateoas.server.mvc.linkTo
+import org.springframework.http.*
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 import xyz.ajarindong.api.constant.AppConstant
 import xyz.ajarindong.api.constant.ErrCode
-import xyz.ajarindong.api.controller.v1.MentorController
 import xyz.ajarindong.api.dto.MentorDto
 import xyz.ajarindong.api.dto.form.MentorProfileUpdateDto
 import xyz.ajarindong.api.dto.form.MentorRegistrationDto
@@ -15,6 +16,8 @@ import xyz.ajarindong.api.exception.EntityAlreadyExistException
 import xyz.ajarindong.api.exception.EntityNotFoundException
 import xyz.ajarindong.api.model.Mentor
 import xyz.ajarindong.api.repository.MentorRepository
+import java.io.FileNotFoundException
+import java.nio.file.Paths
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -73,5 +76,26 @@ class MentorServiceImpl(
 
         log.info("New mentor [email={}, name={}] registered", m.email, m.name)
         return MentorMapper.toMinimalMentorDto(m)
+    }
+
+    @Throws(Exception::class)
+    override fun getProfilePicture(mentorId: String): ResponseEntity<ByteArray> {
+        val m = mentorRepository.findById(mentorId).orElseThrow { EntityNotFoundException(ErrCode.NOT_FOUND, "Mentor tidak terdaftar") }
+        val profilePicture = Optional.ofNullable(m.profilePicture).orElseThrow { FileNotFoundException("Mentor profile picture does not exist") }
+
+        val pictureFile = Paths.get(AppConstant.STORAGE_BASE_PATH, AppConstant.STORAGE_MENTOR_FOLDER, m.id, profilePicture).toFile()
+        val inputStream = FileUtils.openInputStream(pictureFile)
+        val byteArray = inputStream.readAllBytes()
+        inputStream.close()
+
+        val headers = HttpHeaders()
+        headers.setCacheControl(CacheControl.noCache())
+        when (FilenameUtils.getExtension(profilePicture)) {
+            "png", "PNG" -> headers.contentType = MediaType.IMAGE_PNG
+            "jpg", "JPG", "jpeg", "JPEG" -> headers.contentType = MediaType.IMAGE_JPEG
+            else -> headers.contentType = MediaType.IMAGE_JPEG
+        }
+
+        return ResponseEntity(byteArray, headers, HttpStatus.OK)
     }
 }

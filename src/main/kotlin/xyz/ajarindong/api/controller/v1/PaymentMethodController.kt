@@ -1,7 +1,9 @@
 package xyz.ajarindong.api.controller.v1
 
 import io.swagger.v3.oas.annotations.Operation
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import xyz.ajarindong.api.dto.PaymentMethodDto
@@ -17,4 +19,8 @@ class PaymentMethodController(
     @GetMapping
     fun getPaymentMethods(): ResponseEnvelope<List<PaymentMethodDto>> =
             ResponseEnvelope<List<PaymentMethodDto>>().data(paymentMethodService.getPaymentMethods())
+
+    @GetMapping("/{id}/icon")
+    fun getIcon(@PathVariable id: String): ResponseEntity<ByteArray> =
+            paymentMethodService.getIcon(id)
 }

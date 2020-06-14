@@ -41,6 +41,10 @@ class MentorController(
     fun registerMentor(@Valid @RequestBody form: MentorRegistrationDto): ResponseEntity<ResponseEnvelope<MentorDto>> =
             ResponseEntity.status(HttpStatus.CREATED).body(
                     ResponseEnvelope<MentorDto>()
-                            .data(mentorService.register(form))
-            )
+                            .data(mentorService.register(form)))
+
+    @Operation(summary = "Get mentor profile picture")
+    @GetMapping("/{id}/profile-picture")
+    @Throws(Exception::class)
+    fun getProfilePicture(@PathVariable id: String): ResponseEntity<ByteArray> = mentorService.getProfilePicture(id)
 }
