@@ -20,6 +20,7 @@ class PaymentMethodController(
     fun getPaymentMethods(): ResponseEnvelope<List<PaymentMethodDto>> =
             ResponseEnvelope<List<PaymentMethodDto>>().data(paymentMethodService.getPaymentMethods())
 
+    @Operation(summary = "Get payment method icon")
     @GetMapping("/{id}/icon")
     fun getIcon(@PathVariable id: String): ResponseEntity<ByteArray> =
             paymentMethodService.getIcon(id)

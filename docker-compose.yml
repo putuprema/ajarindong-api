@@ -1,0 +1,14 @@
+version: "3"
+services:
+  ajarindong-api:
+    build:
+      context: .
+    image: ajarindong-api:latest
+    container_name: ajarindong-api
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /root/docker/ajarindong-api/config:/config
+      - /root/docker/ajarindong-api/data:/data
+    network_mode: host
