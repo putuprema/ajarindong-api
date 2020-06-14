@@ -13,7 +13,7 @@ class StudentDto(
         var id: String? = null,
         var createdAt: String? = null,
         var updatedAt: String? = null
-) : RepresentationModel<StudentDto>() {
+) {
     fun email(s: String) = apply { email = s }
     fun name(s: String) = apply { name = s }
     fun dateOfBirth(s: String) = apply { dateOfBirth = s }

@@ -12,6 +12,7 @@ object MentorMapper {
         dto.name = o.name
         dto.bio = o.bio
         dto.dateOfBirth = o.dateOfBirth.toString()
+        dto.job = o.job
         dto.createdAt = o.createdAt.toString()
         dto.updatedAt = o.updatedAt.toString()
         return dto
@@ -23,6 +24,7 @@ object MentorMapper {
         dto.rating = o.rating
         dto.name = o.name
         dto.bio = o.bio
+        dto.job = o.job
         dto.createdAt = o.createdAt.toString()
         return dto
     }

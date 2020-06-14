@@ -18,10 +18,12 @@ data class Mentor(
         @Column(nullable = false)
         var dateOfBirth: LocalDate,
         @Column(nullable = false, length = 1000)
-        var bio: String
+        var bio: String,
+        var job: String
 ) : AuditableEntity() {
     @Id
     var id: String = UUID.randomUUID().toString()
+    var profilePicture: String? = null
 
     @Column(nullable = false)
     var rating: Double = 0.0

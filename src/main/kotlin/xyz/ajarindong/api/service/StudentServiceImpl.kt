@@ -29,9 +29,7 @@ class StudentServiceImpl(
     override fun getStudents(): List<StudentDto> {
         val students = arrayListOf<StudentDto>()
         studentRepository.findAll().forEach { s ->
-            students.add(StudentMapper.toMinimalStudentDto(s)
-                    .add(linkTo<StudentController> { getStudentProfile(s.id) }.withSelfRel())
-            )
+            students.add(StudentMapper.toMinimalStudentDto(s))
         }
         return students
     }

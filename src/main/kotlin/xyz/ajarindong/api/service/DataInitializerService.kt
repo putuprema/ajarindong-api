@@ -4,11 +4,12 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import xyz.ajarindong.api.model.*
 import xyz.ajarindong.api.repository.CourseCategoryRepository
-import xyz.ajarindong.api.repository.CourseRepository
+import xyz.ajarindong.api.repository.course.CourseRepository
 import xyz.ajarindong.api.repository.MentorRepository
 import xyz.ajarindong.api.repository.PaymentMethodRepository
 import java.time.LocalDate
 import java.time.Month
+import javax.annotation.PostConstruct
 
 @Service
 class DataInitializerService(
@@ -23,9 +24,7 @@ class DataInitializerService(
         // Payment Method
         val paymentMethods = arrayListOf(
                 PaymentMethod("BCA Virtual Account", "Bayar dengan BCA Virtual Account", "icon.png"),
-                PaymentMethod("Mandiri Virtual Account", "Bayar dengan Mandiri Virtual Account", "icon.png"),
-                PaymentMethod("BRI Virtual Account", "Bayar dengan BRI Virtual Account", "icon.png"),
-                PaymentMethod("BNI Virtual Account", "Bayar dengan BNI Virtual Account", "icon.png")
+                PaymentMethod("Mandiri Virtual Account", "Bayar dengan Mandiri Virtual Account", "icon.png")
         )
         paymentMethodRepository.saveAll(paymentMethods)
 
@@ -33,18 +32,21 @@ class DataInitializerService(
         val putu = Mentor("Putu Prema",
                 "iputupremaananda@gmail.com",
                 passwordEncoder.encode("123456"),
-                LocalDate.of(2000, Month.JUNE, 16), "Lorem ipsum dolor sit amet.")
+                LocalDate.of(2000, Month.JUNE, 16), "Lorem ipsum dolor sit amet.", "Senior Backend Developer di Flick Indonesia")
         putu.rating = 5.0
+        putu.profilePicture = "profile-picture.jpg"
         val vincent = Mentor("Vincent",
                 "vincent@gmail.com",
                 passwordEncoder.encode("123456"),
-                LocalDate.of(2000, Month.JUNE, 16), "Lorem ipsum dolor sit amet.")
+                LocalDate.of(2000, Month.JUNE, 16), "Lorem ipsum dolor sit amet.", "Senior Backend Developer di Flick Indonesia")
         vincent.rating = 4.5
+        vincent.profilePicture = "profile-picture.jpg"
         val tony = Mentor("Tony",
                 "tony@gmail.com",
                 passwordEncoder.encode("123456"),
-                LocalDate.of(2000, Month.JUNE, 16), "Lorem ipsum dolor sit amet.")
+                LocalDate.of(2000, Month.JUNE, 16), "Lorem ipsum dolor sit amet.", "Senior Backend Developer di Flick Indonesia")
         tony.rating = 4.7
+        tony.profilePicture = "profile-picture.jpg"
         mentorRepository.saveAll(arrayListOf(putu, vincent, tony))
 
         // Course category

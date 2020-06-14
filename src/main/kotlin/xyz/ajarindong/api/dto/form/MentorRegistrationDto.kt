@@ -23,5 +23,7 @@ class MentorRegistrationDto(
         var dateOfBirth: String? = null,
         @field:NotEmpty(message = "Bio tidak boleh kosong")
         @field:Length(max = 1000, message = "Panjang bio maksimal 1000 karakter")
-        var bio: String? = null
+        var bio: String? = null,
+        @field:NotEmpty(message = "Job tidak boleh kosong")
+        var job: String? = null
 )

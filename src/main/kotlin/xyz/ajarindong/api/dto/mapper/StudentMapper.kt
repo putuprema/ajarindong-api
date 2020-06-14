@@ -17,7 +17,6 @@ object StudentMapper {
                 .id(stud.id)
                 .createdAt(stud.createdAt.toString())
                 .updatedAt(stud.updatedAt.toString())
-        dto.add(linkTo<StudentController> { WebMvcLinkBuilder.methodOn(StudentController::class.java).getStudentProfile(stud.id) }.withSelfRel())
         return dto
     }
 
@@ -28,7 +27,6 @@ object StudentMapper {
                 .level(stud.level)
                 .id(stud.id)
                 .createdAt(stud.createdAt.toString())
-        dto.add(linkTo<StudentController> { WebMvcLinkBuilder.methodOn(StudentController::class.java).getStudentProfile(stud.id) }.withSelfRel())
         return dto
     }
 }

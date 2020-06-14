@@ -34,9 +34,7 @@ class MentorServiceImpl(
     override fun getMentors(): List<MentorDto> {
         val mentors = arrayListOf<MentorDto>()
         mentorRepository.findAll().forEach { m ->
-            mentors.add(MentorMapper.toMinimalMentorDto(m)
-                    .add(linkTo<MentorController> { getMentorProfile(m.id) }.withSelfRel())
-            )
+            mentors.add(MentorMapper.toMinimalMentorDto(m))
         }
         return mentors
     }
@@ -68,7 +66,8 @@ class MentorServiceImpl(
                 form.email!!,
                 passwordEncoder.encode(form.password!!),
                 LocalDate.parse(form.dateOfBirth!!, DateTimeFormatter.ofPattern(AppConstant.DEFAULT_DATE_FORMAT)),
-                form.bio!!
+                form.bio!!,
+                form.job!!
         )
         mentorRepository.save(m)
 
