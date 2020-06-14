@@ -6,10 +6,12 @@ import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import xyz.ajarindong.api.dto.CourseEnrollmentDto
 import xyz.ajarindong.api.dto.ResponseEnvelope
 import xyz.ajarindong.api.dto.StudentDto
 import xyz.ajarindong.api.dto.form.StudentProfileUpdateDto
 import xyz.ajarindong.api.dto.form.StudentRegistrationDto
+import xyz.ajarindong.api.service.CourseEnrollmentService
 import xyz.ajarindong.api.service.StudentService
 import javax.transaction.Transactional
 import javax.validation.Valid
@@ -18,7 +20,8 @@ import javax.validation.Valid
 @RequestMapping("/v1/student")
 @Transactional(rollbackOn = [Exception::class])
 class StudentController(
-        private val studentService: StudentService
+        private val studentService: StudentService,
+        private val courseEnrollmentService: CourseEnrollmentService
 ) {
     private val log: Logger = LoggerFactory.getLogger(this::class.java)
 
@@ -45,6 +48,17 @@ class StudentController(
     fun registerStudent(@Valid @RequestBody form: StudentRegistrationDto): ResponseEntity<ResponseEnvelope<StudentDto>> =
             ResponseEntity.status(HttpStatus.CREATED).body(
                     ResponseEnvelope<StudentDto>()
-                            .data(studentService.register(form))
-            )
+                            .data(studentService.register(form)))
+
+    @Operation(summary = "Get courses enrolled by student")
+    @GetMapping("/{id}/enrolled-course")
+    fun getEnrolledCourses(@PathVariable id: String): ResponseEnvelope<List<CourseEnrollmentDto>> =
+            ResponseEnvelope<List<CourseEnrollmentDto>>()
+                    .data(courseEnrollmentService.getEnrolledCourse())
+
+    @Operation(summary = "Get courses enrollment detail")
+    @GetMapping("/{id}/enrolled-course/{enrollmentId}")
+    fun getEnrolledCourseDetail(@PathVariable id: String, @PathVariable enrollmentId: String): ResponseEnvelope<CourseEnrollmentDto> =
+            ResponseEnvelope<CourseEnrollmentDto>()
+                    .data(courseEnrollmentService.getEnrolledCourseDetail(enrollmentId))
 }

@@ -8,6 +8,8 @@ data class CourseEnrollment(
         @ManyToOne
         var student: Student,
         @ManyToOne
+        var mentor: Mentor,
+        @ManyToOne
         var course: Course,
         @OneToOne(cascade = [CascadeType.ALL])
         var payment: CourseEnrollmentPayment
@@ -18,6 +20,6 @@ data class CourseEnrollment(
     @Column(nullable = false)
     var completionPercent: Int = 0
 
-    @OneToMany(mappedBy = "courseEnrollment")
+    @OneToMany(mappedBy = "courseEnrollment", cascade = [CascadeType.ALL])
     var progress: List<CourseEnrollmentProgress>? = null
 }

@@ -1,17 +1,15 @@
 package xyz.ajarindong.api.model
 
+import org.apache.commons.lang3.RandomStringUtils
 import java.time.Instant
+import java.time.temporal.ChronoUnit
 import java.util.*
 import javax.persistence.*
 
 @Entity
 data class CourseEnrollmentPayment(
         @ManyToOne
-        var paymentMethod: PaymentMethod,
-        @Column(nullable = false)
-        var paymentNumber: String,
-        @Column(nullable = false)
-        var validUntil: Instant
+        var paymentMethod: PaymentMethod
 ) {
     enum class Status { PAID, UNPAID }
 
@@ -21,4 +19,10 @@ data class CourseEnrollmentPayment(
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     var status: Status = Status.PAID
+
+    @Column(nullable = false)
+    var paymentNumber: String = RandomStringUtils.randomNumeric(10)
+
+    @Column(nullable = false)
+    var validUntil: Instant = Instant.now().plus(1, ChronoUnit.DAYS)
 }

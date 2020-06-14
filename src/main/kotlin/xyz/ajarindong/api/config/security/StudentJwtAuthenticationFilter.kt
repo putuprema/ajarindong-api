@@ -41,12 +41,12 @@ class StudentJwtAuthenticationFilter(
 
                 // 4. Try to get user by its username and user type
                 val username = parsedJwt.body.subject
-                val user: StudentDetails = studentDetailsService.loadByEmail(username) as StudentDetails
+                val studentDetails: StudentDetails = studentDetailsService.loadByEmail(username) as StudentDetails
 
                 // 5. Set current auth'd user to 'auth'
                 // UsernamePasswordAuthenticationToken: A built-in object, used by spring to represent the current authenticated / being authenticated user.
                 // It needs a list of authorities, which has type of GrantedAuthority interface, where SimpleGrantedAuthority is an implementation of that interface
-                val auth = UsernamePasswordAuthenticationToken(user, null, user.authorities)
+                val auth = UsernamePasswordAuthenticationToken(studentDetails.student, null, studentDetails.authorities)
                 SecurityContextHolder.getContext().authentication = auth
             } catch (e: JwtException) {
                 when (e) {
